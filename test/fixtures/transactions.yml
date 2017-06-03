@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reason: MyString
+  location: 
+  bill_image_path: MyString
+  description: MyText
+  debit_credit: 
+  amount: 1.5
+
+two:
+  reason: MyString
+  location: 
+  bill_image_path: MyString
+  description: MyText
+  debit_credit: 
+  amount: 1.5

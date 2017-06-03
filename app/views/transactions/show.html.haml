@@ -1,24 +1,33 @@
-%p#notice= notice
+- model_class = Transaction
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.titleize
 
 %p
-  %b Reason:
+  %strong= model_class.human_attribute_name(:reason) + ':'
+  %br
   = @transaction.reason
 %p
-  %b Location:
+  %strong= model_class.human_attribute_name(:location) + ':'
+  %br
   = @transaction.location
 %p
-  %b Bill image path:
+  %strong= model_class.human_attribute_name(:bill_image_path) + ':'
+  %br
   = @transaction.bill_image_path
 %p
-  %b Description:
+  %strong= model_class.human_attribute_name(:description) + ':'
+  %br
   = @transaction.description
 %p
-  %b Debit credit:
+  %strong= model_class.human_attribute_name(:debit_credit) + ':'
+  %br
   = @transaction.debit_credit
 %p
-  %b Amount:
+  %strong= model_class.human_attribute_name(:amount) + ':'
+  %br
   = @transaction.amount
 
-= link_to 'Edit', edit_transaction_path(@transaction)
-\|
-= link_to 'Back', transactions_path
+
+= link_to t('.back', :default => t("helpers.links.back")), transactions_path, :class => 'btn btn-default'
+= link_to t('.edit', :default => t("helpers.links.edit")), edit_transaction_path(@transaction), :class => 'btn btn-default'
+= link_to t('.destroy', :default => t("helpers.links.destroy")), transaction_path(@transaction), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

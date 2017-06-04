@@ -33,12 +33,22 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'jquery-rails'
+
 gem 'haml'
 gem 'haml-rails'
 
 gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
+
+gem 'omniauth-google-oauth2'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-digitalocean'
+gem 'omniauth-google'
+
+gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

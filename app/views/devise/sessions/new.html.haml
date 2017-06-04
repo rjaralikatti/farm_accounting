@@ -1,0 +1,28 @@
+%h2 Log in
+= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form form-horizontal transaction" } ) do |f|
+  .form-group
+    = f.label :email, class: 'control-label col-lg-2'
+    .col-lg-6
+      = f.text_field :email, class: 'form-control', required: true, autofocus: true
+    = f.error_span(:email)
+  .form-group
+    = f.label :password, class: 'control-label col-lg-2'
+    .col-lg-6
+      = f.password_field :password, class: 'form-control', required: true
+    = f.error_span(:password)
+  - if devise_mapping.rememberable?
+    %div{ class: 'form-group col-lg-2' }
+      %div{ class: 'checkbox pull-right' }
+        = f.check_box :remember_me 
+        Remember Me
+      
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      = f.submit 'Log In', class: 'btn btn-primary'
+      
+  - if devise_mapping.registerable?
+    .form-group
+      .col-lg-offset-2.col-lg-10
+        = link_to 'Sign up', new_registration_path(resource_name), class: 'right'
+      
+  

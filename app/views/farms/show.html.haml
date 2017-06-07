@@ -1,0 +1,29 @@
+- model_class = Farm
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.titleize
+
+%p
+  %strong= model_class.human_attribute_name(:name) + ':'
+  %br
+  = @farm.name
+%p
+  %strong= model_class.human_attribute_name(:address) + ':'
+  %br
+  = @farm.address
+%p
+  %strong= model_class.human_attribute_name(:city) + ':'
+  %br
+  = @farm.city
+%p
+  %strong= model_class.human_attribute_name(:state) + ':'
+  %br
+  = @farm.state
+%p
+  %strong= model_class.human_attribute_name(:country) + ':'
+  %br
+  = @farm.country
+
+
+= link_to t('.back', :default => t("helpers.links.back")), farms_path, :class => 'btn btn-default'
+= link_to t('.edit', :default => t("helpers.links.edit")), edit_farm_path(@farm), :class => 'btn btn-default'
+= link_to t('.destroy', :default => t("helpers.links.destroy")), farm_path(@farm), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

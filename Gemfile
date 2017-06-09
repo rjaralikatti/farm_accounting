@@ -49,7 +49,6 @@ gem 'google-api-client', '~> 0.11'
 
 gem 'figaro'
 
-gem 'bootstrap3_autocomplete_input'
 gem 'bootstrap-sass', '~> 3.3.1'
 
 group :development, :test do

@@ -1,7 +1,6 @@
 class FarmsController < ApplicationController
   before_action :set_farm, only: [:show, :edit, :update, :destroy]
-  autocomplete :user, :email
-
+  
   def home
     @farms = current_user.farms
   end

@@ -21,14 +21,14 @@ class User < ApplicationRecord
     users
   end
   
-  # Role.all.each do |role|
-  #   define_method("is_#{role.name}?") do
-  #     !roles.find_by_name(role.name).nil?
-  #   end
-  # end
-  
-  def is_admin?
-    !roles.find_by_name('admin').nil?
+  Role.all.each do |role|
+    define_method("is_#{role.name}?") do
+      !roles.find_by_name(role.name).nil?
+    end
   end
+  
+  # def is_admin?
+  #   !roles.find_by_name('admin').nil?
+  # end
   
 end

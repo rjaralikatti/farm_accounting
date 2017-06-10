@@ -27,8 +27,6 @@
               %li= link_to "Expenses", transactions_path(type: "Expense")
               %li= link_to "Investment", transactions_path(type: "Investment")
               %li= link_to "Revenue", transactions_path(type: "Revenue")
-              %li= link_to "Farms", farms_path
-              %li= link_to "Crops", crops_path
               - if current_user.is_admin?
                 %li= link_to "Farms", farms_path
                 %li= link_to "Users", users_path

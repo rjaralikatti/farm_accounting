@@ -1,6 +1,6 @@
 class CropsController < ApplicationController
   before_action :set_crop, only: [:show, :edit, :update, :destroy]
-  before_action :set_form_selects, only: [:new, :edit]
+  before_action :set_form_selects, only: [:new, :edit, :create, :update, :destroy]
   before_action :authorize_admin
 
   # GET /crops

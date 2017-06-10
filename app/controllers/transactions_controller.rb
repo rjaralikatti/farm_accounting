@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
   before_action :set_form_selects, only: [:new, :edit, :create, :update]
   before_action :set_trans_type
-  before_action :authorize_owner, only: [:new, :edit, :create, :update]
+  before_action :authorize_owner, only: [:new, :edit, :create, :update, :destroy]
 
   # GET /transactions
   # GET /transactions.json

@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   
   Role.all.each do |role|
     define_method("authorize_#{role.name}") do
-      if !current_user.roles.collect{ |r| r.name }.include?(role)
+      if !current_user.roles.collect{ |r| r.name }.include?(role.name)
         render template: 'devise/401'
       end
     end

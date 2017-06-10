@@ -1,6 +1,6 @@
 class FarmsController < ApplicationController
   before_action :set_farm, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_admin
+  before_action :authorize_admin, only: [:new, :edit, :create, :update, :destroy]
   
   def home
     @farms = current_user.farms

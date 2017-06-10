@@ -27,8 +27,4 @@ class User < ApplicationRecord
     end
   end
   
-  # def is_admin?
-  #   !roles.find_by_name('admin').nil?
-  # end
-  
 end

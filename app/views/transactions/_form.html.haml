@@ -1,35 +1,50 @@
 = form_for @transaction, html: { class: "form form-horizontal transaction" } do |f|
-  .form-group
-    = f.label :reason, class: 'control-label col-lg-2'
-    .col-lg-10
-      = f.text_field :reason, class: 'form-control', required: true
-    = f.error_span(:reason)
-  .form-group
-    = f.label :location, class: 'control-label col-lg-2'
-    .col-lg-10
-      = f.text_field :location, class: 'form-control', required: false
-    = f.error_span(:location)
-  .form-group
-    = f.label :bill_image_path, class: 'control-label col-lg-2'
-    .col-lg-10
-      = f.text_field :bill_image_path, class: 'form-control', required: true
-    = f.error_span(:bill_image_path)
-  .form-group
-    = f.label :description, class: 'control-label col-lg-2'
-    .col-lg-10
-      = f.text_field :description, class: 'form-control', required: true
-    = f.error_span(:description)
-  .form-group
-    = f.label :debit_credit, class: 'control-label col-lg-2'
-    .col-lg-10
-      = f.text_field :debit_credit, class: 'form-control', required: true
-    = f.error_span(:debit_credit)
+  - if @trans_type != "Transaction"
+    = f.hidden_field :trans_type, value: @trans_type
+    
   .form-group
     = f.label :amount, class: 'control-label col-lg-2'
     .col-lg-10
       = f.text_field :amount, class: 'form-control', required: true
     = f.error_span(:amount)
   .form-group
+    = f.label :place_of_transaction, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :place_of_transaction, class: 'form-control', required: false
+    = f.error_span(:place_of_transaction)
+  .form-group
+    = f.label :transaction_method, class: 'control-label col-lg-2'
+    .col-lg-4
+      = f.select :transaction_method, @methods, { include_blank: true }, class: 'form-control', required: true
+    = f.error_span(:transaction_method)
+  .form-group
+    %label{ class: 'control-label col-lg-2'}
+      Cheque No./Transfer Id
+    .col-lg-10
+      = f.text_field :identifier, class: 'form-control', required: false
+    = f.error_span(:identifier)
+  .form-group
+    = f.label :farm_id, class: 'control-label col-lg-2'
+    .col-lg-4
+      = f.select :farm_id, @farms.collect {|p| [ p.name, p.id ] }, { include_blank: true }, class: 'form-control', required: false
+    = f.error_span(:farm_id)
+  .form-group
+    = f.label :crop_id, class: 'control-label col-lg-2'
+    #crop_select.col-lg-4
+      = f.select :crop_id, [], { include_blank: true }, class: 'form-control', required: false
+    = f.error_span(:farm_id)
+  .form-group
+    %label{ class: 'control-label col-lg-2'}
+      Other Reason
+    .col-lg-10
+      = f.text_field :reason, class: 'form-control', required: false
+    = f.error_span(:reason)
+  .form-group
+    = f.label :description, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_area :description, class: 'form-control', required: false
+    = f.error_span(:description)
+  .form-group
     .col-lg-offset-2.col-lg-10
       = f.submit nil,class: 'btn btn-primary'
-      = link_to t('.cancel', :default => t("helpers.links.cancel")), transactions_path, :class => 'btn btn-default'
+      = link_to t('.cancel', :default => t("helpers.links.cancel")), transactions_path(type: @trans_type), :class => 'btn btn-default'

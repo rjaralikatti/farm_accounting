@@ -1,0 +1,3 @@
+class Revenue < Transaction
+  
+end

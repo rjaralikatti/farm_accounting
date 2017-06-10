@@ -12,6 +12,12 @@ class CropsController < ApplicationController
   # GET /crops/1.json
   def show
   end
+  
+  def select_box
+    @crops = Crop.where(farm_id: params[:farm_id])
+    @model_name = params['model']
+    render layout: false
+  end
 
   # GET /crops/new
   def new
@@ -70,8 +76,8 @@ class CropsController < ApplicationController
     
     def set_form_selects
       @farms = current_user.farms
-      @seasons = ['Summer', 'Winter', 'Rainy']
-      @merasures = ['acre', 'sqft', 'sqm', 'hectare', 'gunta']
+      @seasons = [['Summer', 'Summer'], ['Winter', 'Winter'], ['Rainy', 'Rainy']]
+      @merasures = [['acre', 'acre'], ['sqft', 'sqft'], ['sqm', 'sqm'], ['hectare', 'hectare'], ['gunta', 'gunta']]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

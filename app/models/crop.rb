@@ -1,5 +1,8 @@
 class Crop < ApplicationRecord
   
+  belongs_to :farm
+  has_many :transactions
+  
   def life_span
     life_span = (life_span_years.blank? ? "0" : life_span_years.to_s) + " Years "
     life_span = life_span + (life_span_months.blank? ? "0" : life_span_months.to_s) + " Months "

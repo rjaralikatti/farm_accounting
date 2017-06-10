@@ -17,7 +17,7 @@
     - @crops.each do |crop|
       %tr
         %td= link_to crop.name, crop_path(crop)
-        %td= crop.farm_id
+        %td= link_to crop.farm.name, farm_path(crop.farm)
         %td= crop.season
         %td= crop.sowing_date
         %td= crop.harvest_date

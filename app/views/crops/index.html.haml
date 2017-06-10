@@ -1,0 +1,32 @@
+- model_class = Crop
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:farm_id)
+      %th= model_class.human_attribute_name(:season)
+      %th= model_class.human_attribute_name(:sowing_date)
+      %th= model_class.human_attribute_name(:harvest_date)
+      %th= model_class.human_attribute_name(:area_covered)
+      %th= model_class.human_attribute_name(:life_span)
+      %th= model_class.human_attribute_name(:description)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @crops.each do |crop|
+      %tr
+        %td= link_to crop.name, crop_path(crop)
+        %td= crop.farm_id
+        %td= crop.season
+        %td= crop.sowing_date
+        %td= crop.harvest_date
+        %td= crop.area_covered.to_s + " " + crop.covered_area_measure
+        %td= crop.life_span
+        %td= crop.description
+        %td
+          = link_to t('.show', :default => t("helpers.links.show")), crop_path(crop), :class => 'btn btn-default btn-xs'
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_crop_path(crop), :class => 'btn btn-default btn-xs'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), crop_path(crop), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
+
+= link_to t('.new', :default => t("helpers.links.new")), new_crop_path, :class => 'btn btn-primary'

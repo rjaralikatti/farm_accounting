@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :crops
   resources :farms do
     get :autocomplete_user_email, :on => :collection
   end

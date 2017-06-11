@@ -16,12 +16,12 @@
     = f.error_span(:season)
   .form-group
     = f.label :sowing_date, class: 'control-label col-lg-2'
-    .col-lg-2
+    .col-lg-2.datepicker
       = f.text_field :sowing_date, class: 'form-control', required: true, data: {provide: 'datepicker'}
     = f.error_span(:sowing_date)
   .form-group
     = f.label :harvest_date, class: 'control-label col-lg-2'
-    .col-lg-2
+    .col-lg-2.datepicker
       = f.text_field :harvest_date, class: 'form-control', required: true, data: {provide: 'datepicker'}
     = f.error_span(:harvest_date)
   .form-group

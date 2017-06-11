@@ -3,29 +3,38 @@
   %h1=t '.title', :default => model_class.model_name.human.titleize
 
 %p
-  %strong= model_class.human_attribute_name(:reason) + ':'
-  %br
-  = @transaction.reason
+  %strong= model_class.human_attribute_name(:bill_details) + ':'
+  = @transaction.bill_details
 %p
-  %strong= model_class.human_attribute_name(:location) + ':'
-  %br
-  = @transaction.location
-%p
-  %strong= model_class.human_attribute_name(:bill_image_path) + ':'
-  %br
-  = @transaction.bill_image_path
-%p
-  %strong= model_class.human_attribute_name(:description) + ':'
-  %br
-  = @transaction.description
-%p
-  %strong= model_class.human_attribute_name(:debit_credit) + ':'
-  %br
-  = @transaction.debit_credit
+  %strong= model_class.human_attribute_name(:transaction_date) + ':'
+  = @transaction.transaction_date
 %p
   %strong= model_class.human_attribute_name(:amount) + ':'
-  %br
   = @transaction.amount
+%p
+  %strong= model_class.human_attribute_name(:place_of_transaction) + ':'
+  = @transaction.place_of_transaction
+%p
+  %strong= model_class.human_attribute_name(:transaction_method) + ':'
+  = @transaction.transaction_method
+%p
+  %strong Cheque/Transfer Id:
+  = @transaction.identifier
+%p
+  %strong= model_class.human_attribute_name(:place_of_transaction) + ':'
+  = @transaction.place_of_transaction
+%p
+  %strong= model_class.human_attribute_name(:farm_id) + ':'
+  = @transaction.farm.try(:name)
+%p
+  %strong= model_class.human_attribute_name(:crop_id) + ':'
+  = @transaction.crop.try(:name)
+%p
+  %strong= model_class.human_attribute_name(:reason) + ':'
+  = @transaction.reason
+%p
+  %strong= model_class.human_attribute_name(:description) + ':'
+  = @transaction.description
 
 
 = link_to t('.back', :default => t("helpers.links.back")), transactions_path(type: @trans_type), :class => 'btn btn-default'

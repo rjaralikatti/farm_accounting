@@ -1,7 +1,19 @@
 = form_for @transaction, html: { class: "form form-horizontal transaction" } do |f|
+  = render '/errors', object: @transaction
+  
   - if @trans_type != "Transaction"
     = f.hidden_field :trans_type, value: @trans_type
-    
+  - if @trans_type == "Expense"
+    .form-group
+      = f.label :bill_details, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.text_field :bill_details, class: 'form-control', required: false
+      = f.error_span(:bill_details)
+  .form-group
+    = f.label :transaction_date, class: 'control-label col-lg-2'
+    .col-lg-2.datepicker
+      = f.text_field :transaction_date, class: 'form-control  .date-picker', required: true, data: {provide: 'datepicker'}
+    = f.error_span(:transaction_date)
   .form-group
     = f.label :amount, class: 'control-label col-lg-2'
     .col-lg-10
@@ -26,7 +38,7 @@
   .form-group
     = f.label :farm_id, class: 'control-label col-lg-2'
     .col-lg-4
-      = f.select :farm_id, @farms.collect {|p| [ p.name, p.id ] }, { include_blank: true }, class: 'form-control', required: false
+      = f.select :farm_id, @farms.collect {|p| [ p.name, p.id ] }, { include_blank: true }, class: 'form-control', required: true
     = f.error_span(:farm_id)
   .form-group
     = f.label :crop_id, class: 'control-label col-lg-2'

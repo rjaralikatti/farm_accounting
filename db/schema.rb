@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170610203244) do
+ActiveRecord::Schema.define(version: 20170611151735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,12 +66,13 @@ ActiveRecord::Schema.define(version: 20170610203244) do
     t.string "trans_type"
     t.integer "farm_id"
     t.integer "crop_id"
-    t.datetime "transaction_date"
     t.string "transaction_method"
     t.string "identifier"
     t.string "place_of_transaction"
     t.integer "created_by"
     t.integer "updated_by"
+    t.date "transaction_date"
+    t.string "bill_details"
   end
 
   create_table "user_roles", force: :cascade do |t|

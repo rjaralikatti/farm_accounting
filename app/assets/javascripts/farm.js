@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load', function() {
   
   function updateCropSelect(farm_select, model) {
     var farm_id = $(farm_select).val();
@@ -7,7 +7,7 @@ $(document).ready(function(){
     }});
   }
   
-  $(".container .date-picker input").datepicker({
+  $(".datepicker input").datepicker({
      autoclose: true,
      format: "yyyy-mm-dd"
   });

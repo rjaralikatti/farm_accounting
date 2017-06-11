@@ -28,10 +28,9 @@ class TransactionsController < ApplicationController
   # POST /transactions.json
   def create
     @transaction = trans_type_class.new(transaction_params)
-
     respond_to do |format|
-      if @transaction.save!
-        format.html { redirect_to @transaction, notice: '#{trans_type_class} was successfully created.' }
+      if @transaction.save
+        format.html { redirect_to @transaction, notice: "#{trans_type_class} was successfully created." }
         format.json { render :show, status: :created, location: @transaction }
       else
         format.html { render :new }
@@ -45,7 +44,7 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
-        format.html { redirect_to @transaction, notice: '#{trans_type_class} was successfully updated.' }
+        format.html { redirect_to @transaction, notice: "#{trans_type_class} was successfully updated." }
         format.json { render :show, status: :ok, location: @transaction }
       else
         format.html { render :edit }
@@ -59,7 +58,7 @@ class TransactionsController < ApplicationController
   def destroy
     @transaction.destroy
     respond_to do |format|
-      format.html { redirect_to transactions_url, notice: '#{trans_type_class} was successfully destroyed.' }
+      format.html { redirect_to transactions_url, notice: "#{trans_type_class} was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -91,6 +90,6 @@ class TransactionsController < ApplicationController
     def transaction_params
       params.require(trans_type.underscore.to_sym).permit(:reason, :location, :bill_image_path, 
       :description, :debit_credit, :amount, :trans_type, :farm_id, :crop_id, :transaction_date,
-      :transaction_method, :identifier, :created_by, :updated_by, :place_of_transaction)
+      :transaction_method, :identifier, :created_by, :updated_by, :place_of_transaction, :bill_details)
     end
 end

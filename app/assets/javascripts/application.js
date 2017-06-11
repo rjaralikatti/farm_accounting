@@ -15,5 +15,6 @@
 //= require bootstrap-sprockets
 //= require twitter/bootstrap
 //= require bootstrap-datepicker
+//= require farm
 //= require turbolinks
 //= require_tree .

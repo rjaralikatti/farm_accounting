@@ -4,29 +4,26 @@
 %table.table.table-striped
   %thead
     %tr
-      %th= model_class.human_attribute_name(:id)
-      %th= model_class.human_attribute_name(:reason)
-      %th= model_class.human_attribute_name(:location)
-      %th= model_class.human_attribute_name(:bill_image_path)
-      %th= model_class.human_attribute_name(:description)
-      %th= model_class.human_attribute_name(:debit_credit)
+      %th= model_class.human_attribute_name(:transaction_date)
       %th= model_class.human_attribute_name(:amount)
-      %th= model_class.human_attribute_name(:created_at)
-      %th=t '.actions', :default => t("helpers.actions")
+      %th= model_class.human_attribute_name(:place_of_transaction)
+      %th= model_class.human_attribute_name(:transaction_method)
+      %th Cheque/Transfer Id
+      %th= model_class.human_attribute_name(:place_of_transaction)
+      %th= model_class.human_attribute_name(:reason)
+      %th= model_class.human_attribute_name(:farm_id)
+      %th= model_class.human_attribute_name(:crop_id)
   %tbody
     - @transactions.each do |transaction|
       %tr
-        %td= link_to transaction.id, transaction_path(transaction)
-        %td= transaction.reason
-        %td= transaction.location
-        %td= transaction.bill_image_path
-        %td= transaction.description
-        %td= transaction.debit_credit
+        %td= link_to transaction.transaction_date, transaction_path(transaction)
         %td= transaction.amount
-        %td=l transaction.created_at
-        %td
-          = link_to t('.show', :default => t("helpers.links.show")), transaction_path(transaction), :class => 'btn btn-default btn-xs'
-          = link_to t('.edit', :default => t("helpers.links.edit")), edit_transaction_path(transaction), :class => 'btn btn-default btn-xs'
-          = link_to t('.destroy', :default => t("helpers.links.destroy")), transaction_path(transaction), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
-
+        %td= transaction.place_of_transaction
+        %td= transaction.transaction_method
+        %td= transaction.identifier
+        %td= transaction.place_of_transaction
+        %td= transaction.reason
+        %td= transaction.farm.try(:name)
+        %td= transaction.crop.try(:name)
+        
 = link_to t('.new', :default => t("helpers.links.new")), new_transaction_path(type: @trans_type), :class => 'btn btn-primary'

@@ -10,7 +10,6 @@
       %th= model_class.human_attribute_name(:place_of_transaction)
       %th= model_class.human_attribute_name(:transaction_method)
       %th Cheque/Transfer Id
-      %th= model_class.human_attribute_name(:place_of_transaction)
       %th= model_class.human_attribute_name(:reason)
       %th= model_class.human_attribute_name(:farm_id)
       %th= model_class.human_attribute_name(:crop_id)
@@ -22,7 +21,6 @@
         %td= transaction.place_of_transaction
         %td= transaction.transaction_method
         %td= transaction.identifier
-        %td= transaction.place_of_transaction
         %td= transaction.reason
         %td= transaction.farm.try(:name)
         %td= transaction.crop.try(:name)

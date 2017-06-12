@@ -7,7 +7,8 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = trans_type_class.all
+    @transactions = trans_type_class.order('transaction_date desc')
+    @transaction_sum = @transactions.sum(:amount)
   end
 
   # GET /transactions/1

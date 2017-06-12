@@ -1,6 +1,6 @@
 - model_class = @trans_type.constantize
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize + " - Total: " + number_to_currency(@transaction_sum, :unit => "Rs. ")
 %table.table.table-striped
   %thead
     %tr
@@ -16,7 +16,7 @@
   %tbody
     - @transactions.each do |transaction|
       %tr
-        %td= link_to transaction.transaction_date, transaction_path(transaction)
+        %td= link_to transaction.transaction_date, transaction_path(transaction, type: @trans_type)
         %td= transaction.amount
         %td= transaction.place_of_transaction
         %td= transaction.transaction_method

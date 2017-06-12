@@ -18,7 +18,7 @@
     - @transactions.each do |transaction|
       %tr
         %td= link_to transaction.transaction_date, transaction_path(transaction, type: @trans_type)
-        %td= transaction.amount
+        %td= number_to_indian_currency(transaction.amount)
         %td= transaction.place_of_transaction
         %td= transaction.transaction_method
         %td= transaction.identifier

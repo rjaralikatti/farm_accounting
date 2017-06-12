@@ -1,6 +1,7 @@
 - model_class = @trans_type.constantize
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize + " - Total: " + number_to_currency(@transaction_sum, :unit => "Rs. ")
+  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+  %h4= "Total: " + number_to_indian_currency(@transaction_sum).to_s
 %table.table.table-striped
   %thead
     %tr

@@ -27,7 +27,7 @@
               %li= link_to "Expenses", transactions_path(type: "Expense")
               %li= link_to "Investment", transactions_path(type: "Investment")
               %li= link_to "Revenue", transactions_path(type: "Revenue")
-              - if current_user.is_admin?
+              - if current_user.is_owner?
                 %li= link_to "Farms", farms_path
                 %li= link_to "Crops", crops_path
             .pull-right.navbar-brand

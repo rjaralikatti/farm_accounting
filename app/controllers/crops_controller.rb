@@ -1,12 +1,17 @@
 class CropsController < ApplicationController
   before_action :set_crop, only: [:show, :edit, :update, :destroy]
-  before_action :set_form_selects, only: [:new, :edit, :create, :update, :destroy]
-  before_action :authorize_admin, only: [:new, :edit, :create, :update, :destroy]
+  before_action :set_form_selects, only: [:new, :edit]
+  before_action :authorize_owner, only: [:new, :edit, :create, :update, :destroy]
+  before_action :set_farms
 
   # GET /crops
   # GET /crops.json
   def index
-    @crops = Crop.all
+    if @farm_ids.empty?
+      @crops = []
+    else
+      @crops = Crop.where('farm_id in (?)', @farm_ids).order(:name)
+    end
   end
 
   # GET /crops/1
@@ -61,18 +66,22 @@ class CropsController < ApplicationController
 
   # DELETE /crops/1
   # DELETE /crops/1.json
-  def destroy
-    @crop.destroy
-    respond_to do |format|
-      format.html { redirect_to crops_url, notice: 'Crop was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @crop.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to crops_url, notice: 'Crop was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_crop
       @crop = Crop.find(params[:id])
+    end
+    
+    def set_farms
+      @farm_ids = current_user.farms.collect { |farm| farm.id }
     end
     
     def set_form_selects

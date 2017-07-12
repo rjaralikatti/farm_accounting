@@ -24,12 +24,6 @@
     .col-lg-10
       = f.text_field :country, class: 'form-control', required: true
     = f.error_span(:country)
-  = f.fields_for :users do |user_f|
-    .form-group
-      = user_f.label :email, class: 'control-label col-lg-2'
-      .col-lg-10
-        = user_f.text_field :email, class: 'form-control', required: false
-      = user_f.error_span(:email)
   .form-group
     .col-lg-offset-2.col-lg-10
       = f.submit nil,class: 'btn btn-primary'

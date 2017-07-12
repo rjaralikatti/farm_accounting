@@ -1,14 +1,19 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
   before_action :set_form_selects, only: [:new, :edit, :create, :update]
-  before_action :set_trans_type
+  before_action :set_trans_type, :set_farms
   before_action :authorize_owner, only: [:new, :edit, :create, :update, :destroy]
 
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = trans_type_class.order('transaction_date desc')
-    @transaction_sum = @transactions.sum(:amount)
+    if @farm_ids.empty?
+      @transactions = []
+      @transaction_sum = 0
+    else
+      @transactions = trans_type_class.where('farm_id in (?)', @farm_ids).order('transaction_date desc')
+      @transaction_sum = @transactions.sum(:amount)
+    end
   end
 
   # GET /transactions/1
@@ -68,6 +73,10 @@ class TransactionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_transaction
       @transaction = trans_type_class.find(params[:id])
+    end
+    
+    def set_farms
+      @farm_ids = current_user.farms.collect { |farm| farm.id }
     end
     
     def set_trans_type

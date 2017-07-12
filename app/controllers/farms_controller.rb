@@ -1,6 +1,6 @@
 class FarmsController < ApplicationController
   before_action :set_farm, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_admin, only: [:new, :edit, :create, :update, :destroy]
+  before_action :authorize_owner, only: [:new, :edit, :create, :update, :destroy]
   
   def home
     @farms = current_user.farms
@@ -8,7 +8,7 @@ class FarmsController < ApplicationController
   
   # GET /farms
   def index
-    @farms = Farm.all
+    @farms = current_user.farms
   end
 
   # GET /farms/1
@@ -29,6 +29,7 @@ class FarmsController < ApplicationController
     @farm = Farm.new(farm_params)
 
     if @farm.save
+      FarmUser.create(farm_id: @farm.id, user_id: current_user.id)
       redirect_to @farm, notice: 'Farm was successfully created.'
     else
       render :new
@@ -45,10 +46,10 @@ class FarmsController < ApplicationController
   end
 
   # DELETE /farms/1
-  def destroy
-    @farm.destroy
-    redirect_to farms_url, notice: 'Farm was successfully destroyed.'
-  end
+  # def destroy
+  #   @farm.destroy
+  #   redirect_to farms_url, notice: 'Farm was successfully destroyed.'
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -58,10 +59,6 @@ class FarmsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def farm_params
-      users = User.get_users(params[:farm][:users][:email])
-      params[:farm][:farm_users] = FarmUser.get_farm_users(users, params[:farm][:id])
-      params.require(:farm).permit(:name, :address, :city, :state, :country).tap do |whitelisted|
-        whitelisted[:farm_users] = params[:farm][:farm_users]
-      end
+      params.require(:farm).permit(:name, :address, :city, :state, :country)
     end
 end

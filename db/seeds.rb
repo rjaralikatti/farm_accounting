@@ -1,3 +1,10 @@
+# Add Owner DUMMY
+owner = User.find_by_email("farm.aralikatti@gmail.com")
+owner = User.new(email: 'farm.aralikatti@gmail.com', password: '123456') if owner.nil?
+owner.user_roles.build(role_id: Role.find_by_name('owner').id)
+owner.save
+
+
 # Transaction.delete_all
 # User.delete_all
 #
@@ -27,3 +34,4 @@
 #   member.user_roles.build(role_id: Role.find_by_name('member').id)
 #   member.save
 # end
+

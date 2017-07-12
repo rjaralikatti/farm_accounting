@@ -6,4 +6,10 @@
         %p
           Total #{transaction}
           = number_to_indian_currency(farm.sum_transaction(transaction))
+      %p
+        Total Profit
+        = number_to_indian_currency(farm.calculate_profit)
+      %p
+        Capital Left Over
+        = number_to_indian_currency(farm.calculate_capital_left)
       
